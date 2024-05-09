@@ -9,9 +9,6 @@ import com.jobmatchup.jobmatchup.user.User;
 import com.jobmatchup.jobmatchup.user.UserRepository;
 
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
-
 
 
 @Controller
