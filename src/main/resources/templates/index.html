@@ -1,12 +1,291 @@
-<!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Welcome page</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Job Matchup</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" rel="stylesheet" />
+    <!-- Link to your custom CSS file -->
+    <link rel="stylesheet" th:href="@{/css/style.css}"> 
 </head>
+
 <body>
-    <h1>Welcome</h1>
-    <a th:href="@{/sign_in}">Login</a>
+    <!--Navbar-->
+    <nav class="navbar navbar-expand-lg bg-body-white sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <!-- Link to your logo image -->
+                <img th:src="@{/images/mtlog.jpg}" alt="App-logo" /> 
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#hero">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#about">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#team">Teams</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contacts">Contacts</a>
+                    </li>
+                </ul>
+                <a th:href="@{/sign_in}" class="btn btn-brand ms-lg-1">Login</a>
+                <a th:href="@{/register}" class="btn btn-brand ms-lg-1">Signup</a>
+            </div>
+        </div>
+    </nav>
+
+    <!--Hero-->
+    <section id="hero" class="min-vh-100 d-flex align-items-center text-center">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <h1 class="text-uppercase text-white fw-semibold display-1 ">Welcome to <span>JobMatchup</span>
+                    </h1>
+                    <h5 class="text-white mt-3 mb-3">We are a team of highly skilled professionals dedicated to connecting exceptional talent with their ideal employment opportunities.
+                    </h5>
+                    <div>
+                        <a th:href="@{/sign_in}" class="btn btn-brand ms-lg-1">Get started</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!--About-->
+    <section id="about" class="section-padding">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 text-center">
+                    <div class="section-title">
+                        <h1 class="display-4 fw-semibold">About us</h1>
+                        <div class="line"></div>                       
+                    </div>
+                </div>
+
+            </div>
+            <div class="row justify-content-center align-items-center">
+                <div class="col-lg-3">
+                    <!-- Correct path to the image -->
+                    <img th:src="@{/images/About-0.jpg}" alt="About" />
+                </div>
+                <div class="col-lg-7">
+                    <p class="mt-3 mb-4">Our platform connects people in your community who have general skills and expertise with those who need help with everyday tasks and chores. 
+                        Whether you need assistance with cleaning, yard work, errands, basic home repairs, or any other daily task, we can match you with a skilled local helper.
+                    </p>
+                    <div class="d-flex pt-3 mb-2">
+                        <div class="iconbox me-4">
+                            <i class="ri-mail-send-line"></i>
+                        </div>
+                        <p>
+                            <b>Mission</b><br>
+                            Our mission is to build a helpful and reliable network of skilled individuals who can lend a hand to those in need. 
+                            We believe that by connecting people in this way, we can foster a stronger sense of community and make everyday life a little bit easier.
+                        </p>
+                    </div>
+
+                    <div class="d-flex mb-2">
+                        <div class="iconbox me-4">
+                            <i class="ri-eye-fill"></i>
+                        </div>
+                        <p><b>Vision</b><br>
+                            We carefully vet all skill providers in our network to ensure they have the necessary capabilities and experience.
+                             Your satisfaction is our top priority.
+                    </div>
+
+                    <div class="d-flex">
+                        <div class="iconbox me-4">
+                            <i class="ri-rocket-2-fill"></i>
+                        </div>
+                        <p><b>Competense</b><br>
+                            Each individual is background checked, verified, and must maintain high standards of quality and professionalism. You can count on reliable, high-caliber service every time.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!--Team-->
+    <section id="team">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 text-center">
+                    <div class="section-title">
+                        <h1 class="display-4 fw-semibold">Team members</h1>
+                        <div class="line"></div>
+                        <p>Our goal is to match you up with your next employer or employee</p>
+                    </div>
+                </div>
+            </div>
+            <div class="row g-3 text-center">
+                <div class="col-md-4">
+                    <div class="team-member image-zoom">
+                        <div class="image-zoom-wrapper">
+                            <!-- Correct path to the image -->
+                            <img th:src="@{/images/GM-1.jpg}" alt="person-1" />
+                        </div>
+                        <div class="team-members-content">
+                            <h4 class="text-white">Gift Mamarara</h4>
+                            <p class="text-white mb-0">"Opportunities don't happen, you create them."</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="team-member image-zoom">
+                        <div class="image-zoom-wrapper">
+                            <!-- Correct path to the image -->
+                            <img th:src="@{/images/MM.jpg}" alt="person-1" />
+                        </div>
+                        <div class="team-members-content">
+                            <h4 class="text-white">Morena Monnanyana</h4>
+                            <p class="text-white mb-0">"Believe you can and you're halfway there."
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="team-member image-zoom">
+                        <div class="image-zoom-wrapper">
+                            <!-- Correct path to the image -->
+                            <img th:src="@{/images/BM-1.jpg}" alt="person-1" />
+                        </div>
+                        <div class="team-members-content">
+                            <h4 class="text-white">Bongani Maduna</h4>
+                            <p class="text-white mb-0">"We can't become what we need to be by remaining what we are."</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="team-member image-zoom">
+                        <div class="image-zoom-wrapper">
+                            <!-- Correct path to the image -->
+                            <img th:src="@{/images/LR.jpg}" alt="person-1" />
+                        </div>
+                        <div class="line"></div>
+                        <div class="team-members-content">
+                            <h4 class="text-white">Lethabo Rabutla</h4>
+                            <p class="text-white mb-0">"Your attitude determines your direction."</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="team-member image-zoom">
+                        <div class="image-zoom-wrapper">
+                            <!-- Correct path to the image -->
+                            <img th:src="@{/images/MN-1.jpg}" alt="person-1" />
+                        </div>
+                        <div class="team-members-content">
+                            <h4 class="text-white">Nekhubvi Mukona</h4>
+                            <p class="text-white mb-0">
+                                "The future depends on what you do today."
+                             </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="team-member image-zoom">
+                        <div class="image-zoom-wrapper">
+                            <!-- Correct path to the image -->
+                            <img th:src="@{/images/KB.jpg}" alt="person-1" />
+                        </div>
+                        <div class="team-members-content">
+                            <h4 class="text-white">Karabo Tebeila</h4>
+                            <p class="text-white mb-0">"What do you do when a thousand other people want exactly what you want? -You outwork them."</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+    <!--Couter-->
+    <section id="counter" class="section-padding">
+        <div class="container text-center">
+            <div class="row g-4">
+                <div class="col-lg-4 col-sm-6">
+                    <h1 class="text-white display-4">6</h1>
+                    <h6 class="text-uppercase mb-0 text-white">Team members</h6>
+                </div>
+                <div class="col-lg-4 col-sm-6">
+                    <h1 class="text-white display-4">100+</h1>
+                    <h6 class="text-uppercase mb-0 text-white">Services offered</h6>
+                </div>
+                <div class="col-lg-4 col-sm-6">
+                    <h1 class="text-white display-4">0+</h1>
+                    <h6 class="text-uppercase mb-0 text-white">Trusted clients</h6>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!--FOOTER-->
+    <footer id="contacts" class="bg-dark">
+        <div class="footer-top section-padding">
+            <div class="container">
+                <div class="row gy-5">
+                    <div class="col-lg-3 col-sm-6">
+                        <a href="#"><img th:src="@{/images/mtlog.jpg}" alt="LOGO" /></a>
+                        <div class="line"></div>
+                        <p>It's simple to use our service. Just create an account and post a request for the type of help you need.
+                             We'll match you with pre-screened individuals in your area who have the relevant skills and availability.
+                              You can review profiles, read reviews, and directly book and pay for services through our secure platform.
+                        </p>
+                        <div>
+                            <a href="#"><i class="ri-twitter-x-fill"></i></a>
+                            <a href="#"><i class="ri-instagram-fill"></i></a>
+                            <a href="#"><i class="ri-github-fill"></i></a>
+                            <a href="#"><i class="ri-dribbble-line"></i></a>
+
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-sm-6">
+                        <h5 class="text-white">SERVICES</h5>
+                        <div class="line"></div>
+                        <ul>
+                            <li><a href="#">Painting</a></li>
+                            <li><a href="#">Cleaning</a></li>
+                            <li><a href="#">Electricity</a></li>
+                            <li><a href="#">Plumbing</a></li>
+                            <li><a href="#">Garderning</a></li>
+                            <li><a href="#">More...</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-lg-3 col-sm-6">
+                        <h5 class="text-white">About</h5>
+                        <div class="line"></div>
+                        <ul>
+                            <li><a href="#about">Mission</a></li>
+                            <li><a href="#about">Vision</a></li>
+                            <li><a href="#about">Commitment</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-lg-3 col-sm-6">
+                        <h5 class="text-white text-uppercase">Contact us</h5>
+                        <div class="line"></div>
+                        <ul>
+                            <li><a href="#contacts">2 Aubrey Matlakala Str</a></li>
+                            <li><a href="#contacts">Soshanguve, Pretoria, 0152</a></li>
+                            <li><a href="#contacts">(+27) 72 939 1929</a></li>
+                            <li><a href="#contacts">(+27) 62 781 9253</a></li>
+                            <li><a href="#contacts">jobmatchup.ac.za</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

@@ -11,6 +11,7 @@ import com.jobmatchup.jobmatchup.user.UserRepository;
 import org.springframework.web.bind.annotation.PostMapping;
 
 
+
 @Controller
 public class AppController {
 
@@ -34,15 +35,18 @@ public class AppController {
     public String forgotPassword() {
         return "forgot";
     }
-    
+    @GetMapping("/home")
+    public String home() {
+        return "home";
+    }
 
-    //Processing
+    //################-sign up processing-################
     @PostMapping("/process_register")
     public String processRegister(User user) {
         repo.save(user);
         return "register_success";
     }
-    
+    //################-login processing-################
 
-  
 }
+
