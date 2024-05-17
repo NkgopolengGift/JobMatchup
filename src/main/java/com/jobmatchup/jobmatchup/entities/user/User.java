@@ -1,4 +1,4 @@
-package com.jobmatchup.jobmatchup.user;
+package com.jobmatchup.jobmatchup.entities.user;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
