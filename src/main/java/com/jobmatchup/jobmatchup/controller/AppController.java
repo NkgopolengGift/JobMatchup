@@ -96,17 +96,15 @@ public class AppController {
     
     //################-login processing-################
     @PostMapping("/process_login")
-    public String processLogin(@RequestParam String email, @RequestParam String password, Model model) {
-        
+    public String processLogin(@RequestParam String email, @RequestParam String password, Model model, RedirectAttributes redirectAttributes) {
         User user = userService.authenticate(email, password);
         if (user != null) {
-
-            model.addAttribute("firstName", user.getFirstName());
+			model.addAttribute("firstName", user.getFirstName());
             model.addAttribute("loggedInUser", user);
-            return "home";
+            return "redirect:/home"; // Ensure we redirect to home after login
         } else {
-            model.addAttribute("error", "Invalid email or password");
-            return "sign_in";
+            redirectAttributes.addFlashAttribute("error", "Invalid email or password");
+            return "redirect:/sign_in";
         }
     }
 

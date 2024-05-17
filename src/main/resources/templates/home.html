@@ -679,7 +679,7 @@
                   edit-heading
                 "
               >
-                  <h4 class="m-0 pointer">Job List</h4>
+                  <h4 class="m-0 pointer">Common list of jobs offered</h4>
                   <div
                       class="modal fade"
                       id="shortCutModal"
@@ -704,14 +704,14 @@
                 >
                   <div class="p-2">
                     <img
-                      src="https://source.unsplash.com/random/1"
+                      src="/images/profile.jpg"
                       alt="from fb"
                       class="rounded border border-1 border-secondary"
                       style="width: 38px; height: 38px; object-fit: cover"
                     />
                   </div>
                   <div>
-                    <p class="m-0">Lorem Ipsum</p>
+                    <p class="m-0">Cleaner</p>
                   </div>
                 </a>
               </li>
@@ -728,18 +728,162 @@
                 >
                   <div class="p-2">
                     <img
-                      src="https://source.unsplash.com/random/1"
+                      src="/images/profile.jpg"
                       alt="from fb"
                       class="rounded border border-1 border-secondary"
                       style="width: 38px; height: 38px; object-fit: cover"
                     />
                   </div>
                   <div>
-                    <p class="m-0">Lorem Ipsum</p>
+                    <p class="m-0">Painting</p>
                   </div>
                 </a>
               </li>
               <!-- ============jobs list  end=============== -->
+              <!-- ============jobs list  start=============== -->
+              <li class="dropdown-item p-1">
+                <a
+                  href="#"
+                  class="
+                    d-flex
+                    align-items-center
+                    text-decoration-none text-dark
+                  "
+                >
+                  <div class="p-2">
+                    <img
+                      src="/images/profile.jpg"
+                      alt="from fb"
+                      class="rounded border border-1 border-secondary"
+                      style="width: 38px; height: 38px; object-fit: cover"
+                    />
+                  </div>
+                  <div>
+                    <p class="m-0">Electricity</p>
+                  </div>
+                </a>
+              </li>
+              <!-- ============jobs list  end=============== -->
+              <!-- ============jobs list  start=============== -->
+              <li class="dropdown-item p-1">
+                <a
+                  href="#"
+                  class="
+                    d-flex
+                    align-items-center
+                    text-decoration-none text-dark
+                  "
+                >
+                  <div class="p-2">
+                    <img
+                      src="/images/profile.jpg"
+                      alt="from fb"
+                      class="rounded border border-1 border-secondary"
+                      style="width: 38px; height: 38px; object-fit: cover"
+                    />
+                  </div>
+                  <div>
+                    <p class="m-0">Plumbing</p>
+                  </div>
+                </a>
+              </li>
+              <!-- ============jobs list  end=============== -->
+              <!-- ============jobs list  start=============== -->
+              <li class="dropdown-item p-1">
+                <a
+                  href="#"
+                  class="
+                    d-flex
+                    align-items-center
+                    text-decoration-none text-dark
+                  "
+                >
+                  <div class="p-2">
+                    <img
+                      src="/images/profile.jpg"
+                      alt="from fb"
+                      class="rounded border border-1 border-secondary"
+                      style="width: 38px; height: 38px; object-fit: cover"
+                    />
+                  </div>
+                  <div>
+                    <p class="m-0">Garderning</p>
+                  </div>
+                </a>
+              </li>
+              <!-- ============jobs list  end=============== -->
+              <!-- ============jobs list  start=============== -->
+              <li class="dropdown-item p-1">
+                <a
+                  href="#"
+                  class="
+                    d-flex
+                    align-items-center
+                    text-decoration-none text-dark
+                  "
+                >
+                  <div class="p-2">
+                    <img
+                      src="/images/profile.jpg"
+                      alt="from fb"
+                      class="rounded border border-1 border-secondary"
+                      style="width: 38px; height: 38px; object-fit: cover"
+                    />
+                  </div>
+                  <div>
+                    <p class="m-0">Thutching roofing</p>
+                  </div>
+                </a>
+              </li>
+              <!-- ============jobs list  end=============== -->
+            <!-- ============jobs list  start=============== -->
+            <li class="dropdown-item p-1">
+              <a
+                href="#"
+                class="
+                  d-flex
+                  align-items-center
+                  text-decoration-none text-dark
+                "
+              >
+                <div class="p-2">
+                  <img
+                    src="/images/profile.jpg"
+                    alt="from fb"
+                    class="rounded border border-1 border-secondary"
+                    style="width: 38px; height: 38px; object-fit: cover"
+                  />
+                </div>
+                <div>
+                  <p class="m-0">Carpentry</p>
+                </div>
+              </a>
+            </li>
+            <!-- ============jobs list  end=============== -->
+            <!-- ============jobs list  start=============== -->
+            <li class="dropdown-item p-1">
+              <a
+                href="#"
+                class="
+                  d-flex
+                  align-items-center
+                  text-decoration-none text-dark
+                "
+              >
+                <div class="p-2">
+                  <img
+                    src="/images/profile.jpg"
+                    alt="from fb"
+                    class="rounded border border-1 border-secondary"
+                    style="width: 38px; height: 38px; object-fit: cover"
+                  />
+                </div>
+                <div>
+                  <p class="m-0">Landscaping</p>
+                </div>
+              </a>
+            </li>
+            <!-- ============jobs list  end=============== -->
           </div>
         </div>
       <!-- ========-Post Jobs start-============= -->
@@ -764,7 +908,6 @@
                 <form th:action="@{/post}" method="post">
                   <table>
                      <tr>
-                  
                        <td>
                           <input type="text" class="form-control  border-0bg-gray pointer"
                           name= "jobTitle" placeholder="Job Title" 
@@ -794,7 +937,7 @@
                           <h2 class="card-title">Title: <span th:text="${post.jobTitle}"></span></h2>
                           <p class="card-text">Description: <span th:text="${post.content}"></span></p>
                           <p class="card-text">Posted by <span th:text="${post.authorFirstName}"></span> on <span th:text="${#temporals.format(post.createdAt, 'dd-MM-yyyy')}"></span></p>
-                          <form >
+                          <form th:href="apply" action="post">
                               <button type="submit" class="btn btn-primary">Apply</button>
                           </form>
                       </div>
