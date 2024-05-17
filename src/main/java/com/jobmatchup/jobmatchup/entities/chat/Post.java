@@ -31,6 +31,9 @@ public class Post {
     @JoinColumn(name = "AUTHOR_ID", nullable = false)
     private User author;
 
+    @Column(name = "JOB_TITLE", nullable = false, length = 5000)
+    private String jobTitle;
+
     @Column(name = "CONTENT", nullable = false, length = 5000)
     private String content;
 
@@ -40,8 +43,9 @@ public class Post {
     public Post() {
     }
 
-    public Post(User author, String content, LocalDateTime createdAt) {
+    public Post(User author, String jobTitle,String content, LocalDateTime createdAt) {
         this.author = author;
+        this.jobTitle = jobTitle;
         this.content = content;
         this.createdAt = createdAt;
     }

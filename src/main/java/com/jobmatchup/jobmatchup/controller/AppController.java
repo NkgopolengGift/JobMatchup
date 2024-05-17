@@ -1,22 +1,37 @@
 package com.jobmatchup.jobmatchup.controller;
 
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import org.springframework.data.domain.Sort;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttribute;
+import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.jobmatchup.jobmatchup.entities.chat.Post;
+import com.jobmatchup.jobmatchup.entities.chat.PostRepository;
 import com.jobmatchup.jobmatchup.entities.user.User;
 import com.jobmatchup.jobmatchup.entities.user.UserRepository;
 import com.jobmatchup.jobmatchup.service.UserService;
 
 @Controller
+@SessionAttributes("loggedInUser")
 public class AppController {
 
     @Autowired
     private UserRepository repo;
+    @Autowired
+    private PostRepository postRepo;
     @Autowired
     private UserService userService;
 
@@ -37,6 +52,32 @@ public class AppController {
     @GetMapping("/forgot")
     public String forgotPassword() {
         return "forgot";
+    }
+
+    //################-home page-################
+    @GetMapping("/home")
+    public String home(Model model, @SessionAttribute("loggedInUser") User loggedInUser) {
+
+         List<Post> posts = postRepo.findAll(Sort.by(Sort.Direction.DESC, "createdAt"));
+        // Create a list to hold post details including author's first name
+        List<Map<String, Object>> postDetails = new ArrayList<>();
+
+        for (Post post : posts) {
+            Map<String, Object> details = new HashMap<>();
+            details.put("jobTitle", post.getJobTitle());
+            details.put("content", post.getContent());
+            details.put("createdAt", post.getCreatedAt());
+
+            // Retrieve author's first name
+            User author = post.getAuthor();
+            details.put("authorFirstName", author.getFirstName());
+
+            postDetails.add(details);
+        }
+
+        model.addAttribute("posts", postDetails);
+        model.addAttribute("firstName", loggedInUser.getFirstName());
+        return "home";
     }
 
     //################-sign up processing-################
@@ -61,6 +102,7 @@ public class AppController {
         if (user != null) {
 
             model.addAttribute("firstName", user.getFirstName());
+            model.addAttribute("loggedInUser", user);
             return "home";
         } else {
             model.addAttribute("error", "Invalid email or password");
@@ -96,5 +138,21 @@ public class AppController {
     public String logOut() {
         return "index";
     }
+    //################-Post-################
+    @PostMapping("/post")
+    public String postJobs(@RequestParam String jobTitle, @RequestParam String postContent, @SessionAttribute("loggedInUser") 
+         User loggedInUser, RedirectAttributes redirectAttributes)
+        {
+            if (loggedInUser == null) {
+                redirectAttributes.addFlashAttribute("message", "You must be logged in to post.");
+                return "redirect:/sign_in";
+            }
+    
+            Post newPost = new Post(loggedInUser, jobTitle, postContent, LocalDateTime.now());
+            postRepo.save(newPost);
+    
+            redirectAttributes.addFlashAttribute("message", "Post created successfully.");
+            return "redirect:/home";
+        }
 }
 
