@@ -22,6 +22,7 @@ import com.jobmatchup.jobmatchup.entities.chat.Post;
 import com.jobmatchup.jobmatchup.entities.chat.PostRepository;
 import com.jobmatchup.jobmatchup.entities.user.User;
 import com.jobmatchup.jobmatchup.entities.user.UserRepository;
+import com.jobmatchup.jobmatchup.service.EmailService;
 import com.jobmatchup.jobmatchup.service.UserService;
 
 @Controller
@@ -34,6 +35,8 @@ public class AppController {
     private PostRepository postRepo;
     @Autowired
     private UserService userService;
+    @Autowired
+    private EmailService emailService;
 
     //Templates
     @GetMapping("/")
@@ -64,6 +67,7 @@ public class AppController {
 
         for (Post post : posts) {
             Map<String, Object> details = new HashMap<>();
+            details.put("id", post.getId());
             details.put("jobTitle", post.getJobTitle());
             details.put("content", post.getContent());
             details.put("createdAt", post.getCreatedAt());
@@ -152,5 +156,29 @@ public class AppController {
             redirectAttributes.addFlashAttribute("message", "Post created successfully.");
             return "redirect:/home";
         }
+
+    //################-Apply-################
+    @PostMapping("/apply")
+    public String applyForJob(@RequestParam Long postId, @SessionAttribute("loggedInUser") User loggedInUser, RedirectAttributes redirectAttributes) {
+        Post post = postRepo.findById(postId).orElse(null);
+        if (post == null) {
+            redirectAttributes.addFlashAttribute("message", "Post not found.");
+            return "redirect:/home";
+        }
+
+        User postAuthor = post.getAuthor();
+        String subject = "Job Application for " + post.getJobTitle();
+        String body = "Dear " + postAuthor.getFirstName() + ",\n\n" +
+                      "You have received a new job application for your post \"" + post.getJobTitle() + "\" from " + loggedInUser.getFirstName() + " " + loggedInUser.getSurname() + ".\n\n" +
+                      "Applicant Details:\n" +
+                      "Name: " + loggedInUser.getFirstName() + " " + loggedInUser.getSurname() + "\n" +
+                      "Email: " + loggedInUser.getEmail() + "\n\n" +
+                      "Regards,\nJobMatchup Team";
+
+        emailService.sendEmail(postAuthor.getEmail(), subject, body);
+
+        redirectAttributes.addFlashAttribute("message", "Your application has been sent successfully.");
+        return "redirect:/home";
+    }
 }
 
