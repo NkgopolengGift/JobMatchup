@@ -47,6 +47,9 @@
     <!--Hero-->
     <section id="hero" class="min-vh-100 d-flex align-items-center text-center">
         <div class="container">
+            <!-- Display success or error messages -->
+            <div th:if="${message}" class="alert alert-success" th:text="${message}"></div>
+            <div th:if="${error}" class="alert alert-danger" th:text="${error}"></div>
             <div class="row">
                 <div class="col-12">
                     <h1 class="text-uppercase text-white fw-semibold display-1 ">Welcome to <span>JobMatchup</span>
