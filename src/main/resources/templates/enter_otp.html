@@ -17,11 +17,12 @@
                 <div class="card">
                     <div class="card-header bg-primary text-white text-center">
                         <h5>Enter OTP you recived.</h5>
-                    </div>
-                    <!-- Display success or error messages -->
-                    <div th:if="${error}" class="alert alert-danger" th:text="${error}"></div>
-                    <div th:if="${message}" class="alert alert-danger" th:text="${message}"></div>
+                        <!-- Display success or error messages -->
+                        <div th:if="${error}" class="alert alert-danger" th:text="${error}"></div>
+                        <div th:if="${message}" class="alert alert-danger" th:text="${message}"></div>
 
+                    </div>
+                    
                     <div class="card-body">
                         <form id="resetForm" th:action="@{/verify_otp}" method="post">
                             <div class="form-group">

@@ -7,7 +7,10 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.data.domain.Sort;
-
+import org.springframework.http.ResponseEntity;
+import org.springframework.messaging.handler.annotation.MessageMapping;
+import org.springframework.messaging.handler.annotation.Payload;
+import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,14 +23,20 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.jobmatchup.jobmatchup.entities.chat.Post;
 import com.jobmatchup.jobmatchup.entities.chat.PostRepository;
+import com.jobmatchup.jobmatchup.entities.user.Status;
 import com.jobmatchup.jobmatchup.entities.user.User;
 import com.jobmatchup.jobmatchup.entities.user.UserRepository;
 import com.jobmatchup.jobmatchup.service.EmailService;
 import com.jobmatchup.jobmatchup.service.OneTimePinService;
 import com.jobmatchup.jobmatchup.service.UserService;
 
+import lombok.AllArgsConstructor;
+import org.springframework.web.bind.annotation.RequestBody;
+
+
 @Controller
 @SessionAttributes("loggedInUser")
+@AllArgsConstructor
 public class AppController {
 
     @Autowired
@@ -88,7 +97,6 @@ public class AppController {
             return "reset_password";
         } 
         else {
-            System.out.println("true I am 2");
             redirectAttributes.addFlashAttribute("error", "Invalid or expired OTP.");
             return "index";
         }
@@ -143,7 +151,7 @@ public class AppController {
             redirectAttributes.addFlashAttribute("message", "User exists. Please login");
             return "redirect:/sign_in";
         }
-
+        user.setStatus(Status.OFFLINE); 
         repo.save(user);
         redirectAttributes.addFlashAttribute("message", "Your account has been created successfully. Please login.");
         return "redirect:/sign_in";
@@ -154,6 +162,10 @@ public class AppController {
     public String processLogin(@RequestParam String email, @RequestParam String password, Model model, RedirectAttributes redirectAttributes) {
         User user = userService.authenticate(email, password);
         if (user != null) {
+
+            user.setStatus(Status.ONLINE);
+            repo.save(user);
+
 			model.addAttribute("firstName", user.getFirstName());
             model.addAttribute("loggedInUser", user);
             return "redirect:/home"; // Ensure we redirect to home after login
@@ -165,7 +177,12 @@ public class AppController {
 
     //################-Log out-################
     @GetMapping("/logout")
-    public String logOut() {
+    public String logOut(@SessionAttribute("loggedInUser") User loggedInUser, RedirectAttributes redirectAttributes) {
+        if (loggedInUser != null) {
+            loggedInUser.setStatus(Status.OFFLINE); // Update status to OFFLINE
+            repo.save(loggedInUser); // Save the user back to the repository
+        }
+        redirectAttributes.addFlashAttribute("message", "You have been logged out.");
         return "index";
     }
     //################-Post-################
@@ -207,6 +224,12 @@ public class AppController {
 
         redirectAttributes.addFlashAttribute("message", "Your application has been sent successfully.");
         return "redirect:/home";
+    }
+
+//################-Chat-################
+    @PostMapping("/chat")
+    public String chatPage(@RequestParam Long postId, @SessionAttribute("loggedInUser") User loggedInUser, RedirectAttributes redirectAttributes) {
+        return "chat";
     }
 }
 
