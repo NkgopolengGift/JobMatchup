@@ -1,5 +1,6 @@
 **JobMatchup**
-J**obMatchup** is a web application built with Spring Boot to help reduce unemployment in South Africa by connecting individuals without formal qualifications to job opportunities such as cleaners, gardeners, and more. The platform aims to provide an accessible and efficient way for job seekers and employers to connect, thus fostering a supportive job market.
+
+**JobMatchup** is a web application built with Spring Boot to help reduce unemployment in South Africa by connecting individuals without formal qualifications to job opportunities such as cleaners, gardeners, and more. The platform aims to provide an accessible and efficient way for job seekers and employers to connect, thus fostering a supportive job market.
 
 **Features**
 
