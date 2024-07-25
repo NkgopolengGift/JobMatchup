@@ -17,6 +17,8 @@
 **Tech Stack**
 
 **Backend:** Spring Boot
+
 **Database:** PostgreSQL
+
 **Frontend**: HTML, Bootstrap 5, Thymeleaf
 
