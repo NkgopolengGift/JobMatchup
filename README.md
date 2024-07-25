@@ -5,9 +5,13 @@
 **Features**
 
 **Job Listings:** Browse and search for job opportunities without the need for formal qualifications.
-**User Registration & Authentication: **Secure sign-up and login for both job seekers and employers.
+
+**User Registration & Authentication:** Secure sign-up and login for both job seekers and employers.
+
 **Profile Management:** Job seekers can create and manage their profiles, including skills and experience.
+
 **Job Posting:** Employers can post job openings and manage applications.
+
 **Notifications:** Receive updates and notifications for new job postings and application statuses.
 
 **Tech Stack**
